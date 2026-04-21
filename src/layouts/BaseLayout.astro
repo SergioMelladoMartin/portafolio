@@ -1,6 +1,8 @@
 ---
 import '../styles/global.css';
 import Navbar from '../components/ui/Navbar.astro';
+import Analytics from '@vercel/analytics/astro';
+import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -69,6 +71,9 @@ const {
       import { initScrollReveal } from '../scripts/effects.ts';
       document.addEventListener('DOMContentLoaded', initScrollReveal);
     </script>
+
+    <Analytics />
+    <SpeedInsights />
   </body>
 </html>
 
