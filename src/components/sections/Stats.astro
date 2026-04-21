@@ -1,0 +1,106 @@
+---
+interface StatItem {
+  value: number;
+  suffix: string;
+  label: string;
+}
+
+interface Props {
+  data: {
+    stats: {
+      items: StatItem[];
+    };
+  };
+}
+const { data } = Astro.props;
+---
+
+<section id="stats" class="stats-section py-8" aria-label="Statistics">
+  <div class="wrap wrap-md">
+    <div class="stats-grid grid grid-cols-1 md:grid-cols-3 gap-6">
+      {data.stats.items.map((item) => (
+        <div class="stat-card reveal" data-count-to={item.value} data-suffix={item.suffix}>
+          <p class="stat-value neon-green font-bold" aria-live="polite">
+            <span class="stat-number">0</span><span class="stat-suffix">{item.suffix}</span>
+          </p>
+          <p class="stat-label">{item.label}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stat-card {
+    border: 1px solid rgba(176, 38, 255, 0.2);
+    border-radius: 8px;
+    padding: 24px 20px;
+    background: rgba(18, 0, 31, 0.5);
+    text-align: center;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .stat-card:hover {
+    border-color: var(--color-green-matrix);
+    box-shadow: 0 0 16px rgba(0, 255, 65, 0.15);
+  }
+
+  .stat-value {
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  }
+
+  .stat-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-dim);
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+  }
+</style>
+
+<script>
+  function animateCount(el: HTMLElement, target: number) {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const numberEl = el.querySelector('.stat-number') as HTMLElement;
+    if (!numberEl) return;
+
+    if (prefersReduced) {
+      numberEl.textContent = String(target);
+      return;
+    }
+
+    const duration = 1200;
+    const start = performance.now();
+
+    function step(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      numberEl.textContent = String(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    }
+
+    requestAnimationFrame(step);
+  }
+
+  const cards = document.querySelectorAll('.stat-card[data-count-to]');
+  if (cards.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const card = entry.target as HTMLElement;
+            const target = parseInt(card.dataset.countTo || '0', 10);
+            animateCount(card, target);
+            observer.unobserve(card);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    cards.forEach((c) => observer.observe(c));
+  }
+</script>

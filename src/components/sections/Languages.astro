@@ -1,0 +1,98 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+interface LangItem {
+  lang: string;
+  level: string;
+  pct: number;
+}
+
+interface Props {
+  data: {
+    languages: {
+      title: string;
+      items: LangItem[];
+    };
+  };
+}
+const { data } = Astro.props;
+---
+
+<section id="languages" class="py-12" aria-labelledby="languages-heading">
+  <div class="wrap wrap-md text-center">
+    <SectionTitle title={data.languages.title} id="languages-heading" index="05" cmd="locale -a" />
+
+    <div class="lang-grid">
+      {data.languages.items.map((item) => (
+        <div class="lang-card">
+          <div class="lang-header">
+            <span class="lang-name">{item.lang}</span>
+            <span class="lang-level font-mono">{item.level}</span>
+          </div>
+          <div class="lang-bar-bg" role="progressbar" aria-valuenow={item.pct} aria-valuemin={0} aria-valuemax={100} aria-label={`${item.lang}: ${item.level}`}>
+            <div class="lang-bar-fill" style={`width: ${item.pct}%`}></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .lang-card {
+    border: 1px solid rgba(176, 38, 255, 0.2);
+    border-radius: 10px;
+    background: linear-gradient(145deg, rgba(38, 20, 64, 0.7) 0%, rgba(18, 0, 31, 0.85) 100%);
+    padding: 18px 22px;
+    text-align: left;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+
+  .lang-card:hover {
+    border-color: var(--color-green-matrix);
+    transform: translateY(-2px);
+  }
+
+  .lang-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    font-size: 0.9rem;
+  }
+
+  .lang-name {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .lang-level {
+    font-size: 0.68rem;
+    color: var(--color-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .lang-bar-bg {
+    width: 100%;
+    height: 6px;
+    background: rgba(176, 38, 255, 0.15);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .lang-bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--color-purple-neon), var(--color-green-matrix));
+    border-radius: 3px;
+    transition: width 1s ease;
+  }
+</style>

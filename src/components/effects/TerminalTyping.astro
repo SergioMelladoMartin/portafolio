@@ -1,0 +1,66 @@
+---
+interface Props {
+  taglines: string[];
+  id?: string;
+}
+const { taglines, id = 'terminal-typing' } = Astro.props;
+---
+
+<span id={id} class="terminal-typing-text neon-green font-mono text-xl md:text-2xl font-medium" aria-live="polite"></span>
+
+<script is:inline define:vars={{ taglines, id }}>
+  (function () {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    if (prefersReduced) {
+      el.textContent = taglines[0] + ' █';
+      return;
+    }
+
+    let taglineIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let pausing = false;
+
+    const CHAR_DELAY = 80;
+    const DELETE_DELAY = 40;
+    const PAUSE_BEFORE_DELETE = 1500;
+    const PAUSE_BEFORE_NEXT = 500;
+
+    function tick() {
+      const current = taglines[taglineIndex];
+
+      if (pausing) {
+        pausing = false;
+        deleting = true;
+        setTimeout(tick, PAUSE_BEFORE_DELETE);
+        return;
+      }
+
+      if (!deleting) {
+        charIndex++;
+        el.textContent = current.slice(0, charIndex) + ' █';
+        if (charIndex === current.length) {
+          pausing = true;
+          setTimeout(tick, PAUSE_BEFORE_DELETE);
+        } else {
+          setTimeout(tick, CHAR_DELAY);
+        }
+      } else {
+        charIndex--;
+        el.textContent = current.slice(0, charIndex) + (charIndex > 0 ? ' █' : '');
+        if (charIndex === 0) {
+          deleting = false;
+          taglineIndex = (taglineIndex + 1) % taglines.length;
+          setTimeout(tick, PAUSE_BEFORE_NEXT);
+        } else {
+          setTimeout(tick, DELETE_DELAY);
+        }
+      }
+    }
+
+    tick();
+  })();
+</script>

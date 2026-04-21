@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  id?: string;
+  index?: string;
+  cmd?: string;
+}
+const { title, id, index, cmd } = Astro.props;
+---
+
+<div class="section-title-wrapper" {id}>
+  {(cmd || index) && (
+    <p class="section-cmd-line neon-green font-mono text-sm mb-2">
+      {cmd && (
+        <span class="section-cmd">
+          <span class="cmd-prompt">$</span> {cmd}
+        </span>
+      )}
+      {index && (
+        <span class="eyebrow">// {index}</span>
+      )}
+    </p>
+  )}
+  <h2 class="text-3xl md:text-4xl font-bold text-balance" style="color: var(--color-text-primary);">
+    {title}
+  </h2>
+  <div class="title-divider mt-4" aria-hidden="true"></div>
+</div>
+
+<style>
+  .section-title-wrapper {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .section-cmd-line {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .section-cmd {
+    opacity: 0.9;
+    letter-spacing: 0.02em;
+  }
+
+  .section-cmd .cmd-prompt {
+    opacity: 0.55;
+    margin-right: 4px;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.55;
+  }
+
+  .title-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(to right, var(--color-purple-neon), var(--color-green-matrix));
+    border-radius: 1px;
+    margin: 0 auto;
+  }
+</style>

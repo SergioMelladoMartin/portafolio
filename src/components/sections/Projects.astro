@@ -1,0 +1,146 @@
+---
+import SectionTitle from '../ui/SectionTitle.astro';
+
+interface ProjectItem {
+  name: string;
+  description: string;
+  stack: string[];
+  github: string;
+  demo: string;
+}
+
+interface Props {
+  data: {
+    projects: {
+      title: string;
+      items: ProjectItem[];
+    };
+  };
+}
+const { data } = Astro.props;
+---
+
+<section id="projects" class="py-12" aria-labelledby="projects-heading">
+  <div class="wrap wrap-2xl">
+    <SectionTitle title={data.projects.title} id="projects-heading" index="03" />
+
+    <div class="projects-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {data.projects.items.map((project, i) => (
+        <article class="project-card reveal" aria-label={project.name}>
+          <div class="card-header-strip" aria-hidden="true"></div>
+          <div class="card-body">
+            <h3 class="project-name">{project.name}</h3>
+            <p class="project-id font-mono text-xs">PRJ_00{i + 1}</p>
+            <p class="project-desc">{project.description}</p>
+            <div class="project-stack flex flex-wrap">
+              {project.stack.map((tech) => (
+                <span class="skill-badge text-xs">{tech}</span>
+              ))}
+            </div>
+            <div class="project-links flex gap-4 font-mono text-xs">
+              <a
+                href={project.github}
+                class="project-link"
+                aria-label={`GitHub: ${project.name}`}
+                target={project.github !== '#' ? '_blank' : undefined}
+                rel={project.github !== '#' ? 'noopener noreferrer' : undefined}
+              >
+                <svg class="inline mr-1" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0112 6.836c.85.004 1.705.115 2.504.337 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/>
+                </svg>
+                github
+              </a>
+              <a
+                href={project.demo}
+                class="project-link demo-link"
+                aria-label={`Demo: ${project.name}`}
+                target={project.demo !== '#' ? '_blank' : undefined}
+                rel={project.demo !== '#' ? 'noopener noreferrer' : undefined}
+              >
+                <svg class="inline mr-1" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                  <polyline points="15 3 21 3 21 9"/>
+                  <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+                demo
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .project-card {
+    background: var(--color-bg-secondary);
+    border: 1px solid rgba(176, 38, 255, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-green-matrix);
+    box-shadow: 0 8px 32px rgba(0, 255, 65, 0.12), 0 0 0 1px rgba(0, 255, 65, 0.1);
+  }
+
+  .card-header-strip {
+    height: 6px;
+    background: linear-gradient(to right, var(--color-purple-neon), var(--color-green-matrix));
+    box-shadow: 0 2px 12px rgba(176, 38, 255, 0.4);
+    flex-shrink: 0;
+  }
+
+  .card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+  }
+
+  .project-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  .project-id {
+    color: var(--color-text-dim);
+    margin-bottom: 4px;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-dim);
+    line-height: 1.6;
+    flex: 1;
+  }
+
+  .project-links {
+    margin-top: 8px;
+  }
+
+  .project-link {
+    color: var(--color-green-matrix);
+    text-decoration: none;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .project-link:hover {
+    text-decoration: underline;
+    text-shadow: none;
+  }
+
+  .demo-link {
+    color: var(--color-purple-neon);
+  }
+</style>

@@ -1,0 +1,58 @@
+---
+interface Props {
+  currentLang: 'es' | 'en';
+}
+const { currentLang } = Astro.props;
+const esPath = '/';
+const enPath = '/en/';
+---
+
+<nav class="lang-toggle" aria-label="Language selector">
+  <a
+    href={esPath}
+    class:list={['lang-btn', { 'lang-active': currentLang === 'es' }]}
+    aria-current={currentLang === 'es' ? 'page' : undefined}
+    hreflang="es"
+  >
+    ES
+  </a>
+  <span class="lang-divider" aria-hidden="true">|</span>
+  <a
+    href={enPath}
+    class:list={['lang-btn', { 'lang-active': currentLang === 'en' }]}
+    aria-current={currentLang === 'en' ? 'page' : undefined}
+    hreflang="en"
+  >
+    EN
+  </a>
+</nav>
+
+<style>
+  .lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.05em;
+  }
+  .lang-divider {
+    color: var(--color-text-dim);
+  }
+  .lang-btn {
+    color: var(--color-text-dim);
+    text-decoration: none;
+    padding: 4px 6px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  .lang-btn:hover {
+    color: var(--color-green-matrix);
+    text-shadow: 0 0 8px var(--color-green-matrix);
+  }
+  .lang-active {
+    color: var(--color-green-matrix) !important;
+    text-shadow: 0 0 8px var(--color-green-matrix);
+  }
+</style>

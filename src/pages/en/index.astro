@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Stats from '../../components/sections/Stats.astro';
+import About from '../../components/sections/About.astro';
+import Experience from '../../components/sections/Experience.astro';
+import Projects from '../../components/sections/Projects.astro';
+import Skills from '../../components/sections/Skills.astro';
+import Certifications from '../../components/sections/Certifications.astro';
+import Languages from '../../components/sections/Languages.astro';
+import Contact from '../../components/sections/Contact.astro';
+import data from '../../content/en.json';
+---
+
+<BaseLayout
+  title={data.meta.title}
+  description={data.meta.description}
+  lang="en"
+  nav={data.nav}
+  ogTitle={data.meta.title}
+  ogDescription={data.meta.description}
+>
+  <Hero data={data} />
+  <Stats data={data} />
+  <About data={data} />
+  <Experience data={data} />
+  {/* <Projects data={data} /> */}
+  <Skills data={data} />
+  <Certifications data={data} />
+  <Languages data={data} />
+  <Contact data={data} />
+
+  <Fragment slot="footer-text">
+    <span class="text-text-dim">{data.footer}</span>
+  </Fragment>
+</BaseLayout>

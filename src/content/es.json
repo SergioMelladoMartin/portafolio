@@ -1,0 +1,233 @@
+{
+  "lang": "es",
+  "meta": {
+    "title": "Sergio Mellado — Analista de Ciberseguridad",
+    "description": "Portfolio de Sergio Mellado Martín, Analista de Ciberseguridad e Ingeniero Informático especializado en infraestructura IT e inteligencia artificial."
+  },
+  "personal": {
+    "name": "Sergio Mellado Martín",
+    "role": "Analista de Ciberseguridad",
+    "location": "Santa Cruz de Tenerife, Canarias, España",
+    "email": "sergiomellado15@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/sergiomelladomartin",
+    "github": "https://github.com/sergiomelladomartin",
+    "cvUrl": "/cv.pdf"
+  },
+  "hero": {
+    "eyebrow": "$ whoami",
+    "shortBio": "Ingeniero informático especializado en ciberseguridad, infraestructura cloud e inteligencia artificial aplicada.",
+    "statusLabel": "Disponible",
+    "locationShort": "Tenerife, ES",
+    "cvLabel": "Descargar CV",
+    "taglines": [
+      "> Analista de Ciberseguridad"
+    ]
+  },
+  "stats": {
+    "items": [
+      { "value": 3, "suffix": "+", "label": "Años de experiencia" },
+      { "value": 5, "suffix": "", "label": "Certificaciones" },
+      { "value": 19, "suffix": "", "label": "Tecnologías" }
+    ]
+  },
+  "about": {
+    "title": "Sobre mí",
+    "bio": "Ingeniero informático especializado en ciberseguridad e infraestructura IT. Me muevo en la intersección entre seguridad, cloud e inteligencia artificial aplicada, construyendo soluciones sólidas y automatizando todo lo automatizable.",
+    "highlight": "Experto en ciberseguridad e infraestructura IT, apasionado por la IA aplicada.",
+    "rows": [
+      { "icon": "map-pin", "label": "Ubicación", "value": "Tenerife, Canarias" },
+      { "icon": "cake", "label": "Edad", "value": "25 años" },
+      { "icon": "graduation-cap", "label": "Formación", "value": "Ing. Informática, ULL" }
+    ],
+    "facts": [
+      { "key": "ubicacion", "value": "Santa Cruz de Tenerife, ES" },
+      { "key": "especialidad", "value": "Ciberseguridad & Cloud" },
+      { "key": "educacion", "value": "Grado en Ingeniería Informática" },
+      { "key": "idiomas", "value": "ES / EN / FR" }
+    ]
+  },
+  "experience": {
+    "title": "Experiencia",
+    "items": [
+      {
+        "company": "Inetel",
+        "url": "https://inetel.es",
+        "logos": ["/logos/inetel.jpeg"],
+        "totalDates": "mar 2024 - Presente",
+        "location": "Santa Cruz de Tenerife",
+        "roles": [
+          {
+            "role": "Analista de ciberseguridad",
+            "category": "Ciberseguridad",
+            "dates": "ene 2026 - Presente",
+            "description": "Respuesta a eventos, alertas e incidencias de seguridad operando Fortinet, Imperva, Proofpoint y Qualys. Análisis y remediación de vulnerabilidades (CVE) y sanitización/hardening de sistemas Linux/Windows siguiendo guías CIS. Seguimiento del cumplimiento ENS y coordinación con CCN-CERT ante incidentes.",
+            "stack": ["Fortinet", "Imperva", "Proofpoint", "Qualys", "CCN-Cert", "ENS", "CompTIA Sec+"]
+          },
+          {
+            "role": "Administrador de infraestructura IT",
+            "category": "Infraestructura",
+            "dates": "mar 2024 - ene 2026",
+            "description": "Administración y soporte N2 de infraestructura IT corporativa: gestión de sistemas Linux/Windows, virtualización con VMware, contenedores con Docker, redes, backups, alta disponibilidad y resolución de incidencias escaladas. Como proyectos destacados: despliegue y mantenimiento de un cluster Ceph distribuido para almacenamiento, y despliegue de un sistema de monitorización con Centreon y alertas 24/7.",
+            "stack": ["VMware", "Linux", "Windows Server", "Microsoft 365", "Red Hat", "Centreon", "Ceph"]
+          }
+        ]
+      },
+      {
+        "company": "VisualPolitik · Informe K · Visual Business School",
+        "url": "https://visualpolitik.com",
+        "logos": [
+          "/logos/visualpolitik.png",
+          "/logos/informe-k.png",
+          "/logos/visual-business-school.png"
+        ],
+        "totalDates": "ago 2025 - Presente",
+        "location": "Santa Cruz de Tenerife",
+        "roles": [
+          {
+            "role": "Profesor y Colaborador de Contenido",
+            "category": "Educación",
+            "dates": "ago 2025 - Presente",
+            "description": "Codiseñador y profesor del Máster en Inteligencia Artificial de UTAMED × Visual Business School. Profesor y colaborador en el Máster en Inversión y Diversificación Multimercado. Colaborador de contenido en Informe K y otros proyectos del grupo.",
+            "stack": ["IA", "Python", "Claude", "Microsoft 365", "Markdown"]
+          }
+        ]
+      },
+      {
+        "company": "PwC España",
+        "url": "https://www.pwc.es",
+        "logos": ["/logos/pwc.png"],
+        "totalDates": "ago 2023 - dic 2023",
+        "location": "Santa Cruz de Tenerife",
+        "roles": [
+          {
+            "role": "Consultor de Integración Workday",
+            "category": "Consultoría",
+            "dates": "ago 2023 - dic 2023",
+            "description": "Integrador de Workday con clientes enterprise, configurando flujos de integración y migración de datos desde sistemas legacy mediante transferencias SFTP y plantillas XML/XLSX.",
+            "stack": ["Workday", "XML", "XLSX", "SFTP", "Microsoft 365"]
+          }
+        ]
+      },
+      {
+        "company": "Binhex",
+        "url": "https://binhex.es",
+        "logos": ["/logos/binhex.png"],
+        "totalDates": "mar 2023 - may 2023",
+        "location": "Santa Cruz de Tenerife",
+        "roles": [
+          {
+            "role": "Desarrollador Python (Prácticas)",
+            "category": "Desarrollo",
+            "dates": "mar 2023 - may 2023",
+            "description": "Prácticas como desarrollador Python sobre Odoo ERP. Colaboré en el desarrollo y personalización de módulos de la plataforma para clientes pymes.",
+            "stack": ["Python", "JavaScript", "SQL", "ERP", "Odoo"]
+          }
+        ]
+      }
+    ]
+  },
+  "projects": {
+    "title": "Proyectos",
+    "items": [
+      {
+        "name": "SIEM Dashboard",
+        "description": "Dashboard de monitorización de eventos de seguridad en tiempo real.",
+        "stack": ["Python", "Elastic", "Docker"],
+        "github": "#",
+        "demo": "#"
+      },
+      {
+        "name": "Ceph Cluster Automation",
+        "description": "Automatización de despliegue y mantenimiento de cluster Ceph.",
+        "stack": ["Ansible", "Bash", "Ceph"],
+        "github": "#",
+        "demo": "#"
+      },
+      {
+        "name": "AI Code Assistant",
+        "description": "Integración de Claude en flujo de desarrollo y análisis de código.",
+        "stack": ["Anthropic API", "TypeScript", "Node"],
+        "github": "#",
+        "demo": "#"
+      }
+    ]
+  },
+  "skills": {
+    "title": "Tecnologías",
+    "techRows": [
+      [
+        { "name": "Linux", "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" },
+        { "name": "Docker", "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
+        { "name": "Red Hat", "logoUrl": "https://cdn.simpleicons.org/redhat/EE0000" }
+      ],
+      [
+        { "name": "Bash", "logoUrl": "https://cdn.simpleicons.org/gnubash/ffffff" },
+        { "name": "Ansible", "logoUrl": "https://cdn.simpleicons.org/ansible/EE0000" },
+        { "name": "Ceph", "logoUrl": "https://cdn.simpleicons.org/ceph/ffffff" },
+        { "name": "Git", "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" }
+      ],
+      [
+        { "name": "Python", "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
+        { "name": "Claude Code", "logoUrl": "https://cdn.simpleicons.org/claude/D97757" },
+        { "name": "Azure", "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" },
+        { "name": "VMware", "logoUrl": "https://cdn.simpleicons.org/vmware/ffffff" },
+        { "name": "Microsoft 365", "logoUrl": "/logos/tech/microsoft.svg" }
+      ],
+      [
+        { "name": "GitHub", "logoUrl": "https://cdn.simpleicons.org/github/ffffff" },
+        { "name": "Nginx", "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nginx/nginx-original.svg" },
+        { "name": "Odoo", "logoUrl": "https://cdn.simpleicons.org/odoo/8f4aa8" },
+        { "name": "Windows Server", "logoUrl": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows11/windows11-original.svg" }
+      ],
+      [
+        { "name": "Fortinet", "logoUrl": "https://cdn.simpleicons.org/fortinet/EE3124" },
+        { "name": "Qualys", "logoUrl": "https://cdn.simpleicons.org/qualys/ED2E26" },
+        { "name": "Wireshark", "logoUrl": "https://cdn.simpleicons.org/wireshark/1679A7" }
+      ]
+    ]
+  },
+  "certifications": {
+    "title": "Certificaciones",
+    "verifyLabel": "verificar",
+    "items": [
+      { "name": "Claude Code in Action", "issuer": "Anthropic", "logo": "https://cdn.simpleicons.org/claude/D97757", "year": "ene 2026", "verifyUrl": "https://verify.skilljar.com/c/py3jn8pdzxmw" },
+      { "name": "Security+ ce Certification", "issuer": "CompTIA", "logo": "https://cdn.simpleicons.org/comptia/C8202F", "year": "ene 2025", "verifyUrl": "https://www.credly.com/badges/ea9ff4aa-c4db-4e1a-b1f9-d284be2bc307/linked_in_profile" },
+      { "name": "Azure AI Fundamentals", "issuer": "Microsoft", "logo": "/logos/tech/microsoft.svg", "year": "sep 2025", "verifyUrl": "https://www.certiport.com/portal/Pages/PrintTranscriptInfo.aspx?action=Cert&id=455&cvid=FWyzsN4S/x6tpjP7tRz9Zg==" },
+      { "name": "Certified AI Email Security Specialist 2025", "issuer": "Proofpoint", "logo": "/logos/tech/proofpoint.png", "year": "sep 2025", "verifyUrl": "https://www.credly.com/badges/945d7fab-38b6-4576-bc31-36d66bd8a7cc/public_url" },
+      { "name": "ISO/IEC 20000 Foundation", "issuer": "PECB", "logo": "/logos/tech/pecb.png", "year": "jun 2024", "verifyUrl": "https://pecb.com/en/userCertification/certificateVerification" },
+      { "name": "Azure Fundamentals AZ-900", "issuer": "Microsoft", "logo": "/logos/tech/microsoft.svg", "year": "dic 2023", "verifyUrl": "https://learn.microsoft.com/api/credentials/share/es-es/SergioMelladoMartn-9496/880F584EC6CD9926?sharingId" }
+    ]
+  },
+  "languages": {
+    "title": "Idiomas",
+    "items": [
+      { "lang": "Español", "level": "Nativo", "pct": 100 },
+      { "lang": "Inglés", "level": "Professional Working", "pct": 75 }
+    ]
+  },
+  "contact": {
+    "title": "Contacto",
+    "heading": "Hablemos",
+    "namePlaceholder": "tu nombre",
+    "emailPlaceholder": "tu@email.com",
+    "messagePlaceholder": "Escribe tu mensaje aquí...",
+    "submit": "Enviar mensaje",
+    "nameLabel": "Nombre",
+    "emailLabel": "Email",
+    "messageLabel": "Mensaje",
+    "links": {
+      "email": "Email",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
+  },
+  "nav": {
+    "about": "sobre-mí",
+    "experience": "experiencia",
+    "technologies": "tecnologías",
+    "certifications": "certificaciones",
+    "languages": "idiomas",
+    "contact": "contacto"
+  },
+  "footer": "Sergio Mellado Martín · construido con Astro"
+}

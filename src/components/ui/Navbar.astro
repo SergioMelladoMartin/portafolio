@@ -1,0 +1,232 @@
+---
+import LangToggle from './LangToggle.astro';
+
+interface Props {
+  currentLang: 'es' | 'en';
+  nav: Record<string, string>;
+}
+const { currentLang, nav } = Astro.props;
+const base = currentLang === 'en' ? '/en/' : '/';
+---
+
+<header class="navbar" role="banner">
+  <nav class="navbar-inner" aria-label="Main navigation">
+    <a href={base} class="navbar-logo" aria-label="Home">
+      <span class="neon-green font-mono text-sm">{">"}</span>
+      <span class="font-mono text-sm text-text-primary ml-1">sergio.mellado</span>
+    </a>
+
+    <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="nav-menu" role="list">
+      {Object.entries(nav).map(([key, label]) => (
+        <li>
+          <a href={`${base}#${key}`} class="nav-link" data-section={key}>
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="navbar-controls">
+      <LangToggle currentLang={currentLang} />
+    </div>
+  </nav>
+</header>
+
+<style>
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(10, 0, 20, 0.75);
+    border-bottom: 1px solid rgba(176, 38, 255, 0.2);
+  }
+
+  .navbar-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    height: 64px;
+    gap: 24px;
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .navbar-logo {
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-family: var(--font-mono, 'JetBrains Mono', monospace);
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--color-text-dim);
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 2px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--color-green-matrix);
+    box-shadow: 0 0 6px var(--color-green-matrix);
+    border-radius: 1px;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: var(--color-green-matrix);
+    text-shadow: 0 0 8px var(--color-green-matrix);
+    background: rgba(0, 255, 65, 0.05);
+  }
+
+  .nav-link.active::after {
+    transform: scaleX(1);
+  }
+
+  .navbar-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-text-primary);
+    transition: all 0.3s;
+  }
+
+  @media (max-width: 768px) {
+    .nav-hamburger {
+      display: flex;
+    }
+
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--color-bg-secondary);
+      border-bottom: 1px solid rgba(176, 38, 255, 0.3);
+      padding: 12px 0;
+    }
+
+    .nav-links.open {
+      display: flex;
+    }
+
+    .nav-link {
+      padding: 12px 24px;
+      width: 100%;
+    }
+
+    .nav-link::after {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('nav-hamburger');
+  const menu = document.getElementById('nav-menu');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    menu.querySelectorAll('a').forEach((a) => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+
+  const sectionsList = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+  const navLinks = document.querySelectorAll<HTMLElement>('.nav-link[data-section]');
+  const trackedIds = new Set(
+    Array.from(navLinks).map((l) => l.getAttribute('data-section'))
+  );
+  const tracked = sectionsList.filter((s) => trackedIds.has(s.id));
+
+  if (tracked.length && navLinks.length) {
+    const OFFSET = 120;
+    let ticking = false;
+
+    const setActive = () => {
+      ticking = false;
+      const scrollPos = window.scrollY + OFFSET;
+      let activeId: string | null = null;
+      for (const section of tracked) {
+        if (section.offsetTop <= scrollPos) activeId = section.id;
+      }
+      if (!activeId && tracked[0] && window.scrollY < tracked[0].offsetTop) {
+        activeId = tracked[0].id;
+      }
+      navLinks.forEach((link) => {
+        link.classList.toggle(
+          'active',
+          link.getAttribute('data-section') === activeId
+        );
+      });
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(setActive);
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    setActive();
+  }
+</script>
