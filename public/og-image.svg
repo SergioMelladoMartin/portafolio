@@ -3,12 +3,12 @@
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
       <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(176,38,255,0.09)" stroke-width="1"/>
     </pattern>
-    <radialGradient id="glow1" cx="18%" cy="28%" r="55%">
-      <stop offset="0%" stop-color="#b026ff" stop-opacity="0.45"/>
+    <radialGradient id="glow1" cx="50%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#b026ff" stop-opacity="0.5"/>
       <stop offset="100%" stop-color="#b026ff" stop-opacity="0"/>
     </radialGradient>
-    <radialGradient id="glow2" cx="88%" cy="78%" r="48%">
-      <stop offset="0%" stop-color="#00ff41" stop-opacity="0.28"/>
+    <radialGradient id="glow2" cx="50%" cy="80%" r="55%">
+      <stop offset="0%" stop-color="#00ff41" stop-opacity="0.3"/>
       <stop offset="100%" stop-color="#00ff41" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="divider" x1="0" y1="0" x2="1" y2="0">
@@ -22,14 +22,17 @@
   <rect width="1200" height="630" fill="url(#glow1)"/>
   <rect width="1200" height="630" fill="url(#glow2)"/>
 
-  <text x="120" y="260" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="180" font-weight="700" fill="#b026ff">&gt;</text>
-  <text x="260" y="260" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="180" font-weight="700" fill="#00ff41">_</text>
+  <g text-anchor="middle">
+    <text x="600" y="200" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="160" font-weight="700">
+      <tspan fill="#b026ff">&gt;</tspan><tspan fill="#00ff41" dx="24">_</tspan>
+    </text>
 
-  <rect x="120" y="310" width="180" height="3" fill="url(#divider)" rx="1.5"/>
+    <rect x="490" y="235" width="220" height="3" fill="url(#divider)" rx="1.5"/>
 
-  <text x="120" y="410" font-family="'Inter', system-ui, sans-serif" font-size="80" font-weight="700" fill="#e0e0ff">Sergio Mellado</text>
+    <text x="600" y="340" font-family="'Inter', system-ui, sans-serif" font-size="78" font-weight="700" fill="#e0e0ff">Sergio Mellado</text>
 
-  <text x="120" y="475" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="32" font-weight="500" fill="#00ff41">&gt; Analista de Ciberseguridad</text>
+    <text x="600" y="410" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="32" font-weight="500" fill="#00ff41">&gt; Analista de Ciberseguridad</text>
 
-  <text x="120" y="555" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="24" fill="#8080a0">sergiomellado.com</text>
+    <text x="600" y="490" font-family="'JetBrains Mono', ui-monospace, monospace" font-size="24" fill="#8080a0">sergiomellado.com</text>
+  </g>
 </svg>
