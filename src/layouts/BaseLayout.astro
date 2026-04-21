@@ -33,6 +33,8 @@ const {
     <meta property="og:title"       content={ogTitle ?? title} />
     <meta property="og:description" content={ogDescription ?? description} />
     <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString()} />
+    <meta property="og:site_name"   content="Sergio Mellado" />
     <meta property="og:image"       content={new URL('/og-image.png', Astro.site ?? Astro.url).toString()} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
