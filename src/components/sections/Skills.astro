@@ -15,17 +15,51 @@ interface Props {
   };
 }
 const { data } = Astro.props;
+
+const flat = data.skills.techRows.flat();
+const mobilePattern = [4, 3, 4, 3, 4, 3];
+const mobileRows: TechItem[][] = [];
+let i = 0;
+for (let p = 0; i < flat.length; p++) {
+  const size = mobilePattern[p % mobilePattern.length];
+  mobileRows.push(flat.slice(i, i + size));
+  i += size;
+}
 ---
 
 <section id="technologies" class="py-12" aria-labelledby="technologies-heading">
   <div class="wrap wrap-lg text-center">
     <SectionTitle title={data.skills.title} id="technologies-heading" index="03" cmd="neofetch --stack" />
 
-    <div class="hex-grid" role="list" aria-label="Technologies">
+    <div class="hex-grid hex-grid--desktop" role="list" aria-label="Technologies">
       {data.skills.techRows.map((row) => (
         <div class="hex-row">
           {row.map((tech) => (
             <div class="hex-cell" role="listitem">
+              <div class="hex" aria-label={tech.name}>
+                <div class="hex-inner">
+                  <img
+                    src={tech.logoUrl}
+                    alt={tech.name}
+                    loading="lazy"
+                    width="44"
+                    height="44"
+                    onerror="this.style.display='none';this.parentElement.classList.add('no-logo');this.parentElement.setAttribute('data-fallback', this.alt.charAt(0));"
+                  />
+                </div>
+              </div>
+              <span class="hex-label">{tech.name}</span>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+
+    <div class="hex-grid hex-grid--mobile" aria-hidden="true">
+      {mobileRows.map((row) => (
+        <div class="hex-row">
+          {row.map((tech) => (
+            <div class="hex-cell">
               <div class="hex" aria-label={tech.name}>
                 <div class="hex-inner">
                   <img
@@ -68,6 +102,13 @@ const { data } = Astro.props;
     flex-direction: column;
     align-items: center;
     padding: 12px 0 40px;
+  }
+
+  .hex-grid--mobile { display: none; }
+
+  @media (max-width: 640px) {
+    .hex-grid--desktop { display: none; }
+    .hex-grid--mobile  { display: flex; }
   }
 
   .hex-row {
